@@ -43,5 +43,12 @@ class Program:
                     if line is not None:
                         file.write(f"{line}\n")
 
-    def assemble(self, output_format: str, output_file: str):
+    def assemble(self, output_format: str, output_file: str) -> None:
         os.system(f"nasm -f {output_format} -o {output_file} {self.asm_file_path}")
+
+    def debug(self, option: str) -> None:
+        if option == "print_asm":
+            for i, line in enumerate(self.asm_codegen):
+                print(f"{i}. {line}")
+        else:
+            raise ValueError(f"Invalid option '{option}' for debugging.")
