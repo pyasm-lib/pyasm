@@ -157,9 +157,9 @@ def write_cursor(char, attribute, times, program, page=0x00) -> None:
     Return:
     None
     """
-    program.asm_codegen.extend(["mov ah, 0x09",
-                                f"mov al, '{char}'",
-                                f"mov bh, {page}",
+    program.asm_codegen.append("mov ah, 0x09")
+    if char is not None: program.asm_codegen.append(f"mov al, '{char}'")
+    program.asm_codegen.extend([f"mov bh, {page}",
                                 f"mov bl, {attribute}",
                                 f"mov cx, {times}",
                                 "int 0x10"])
@@ -180,9 +180,9 @@ def teletype_write_cursor(char, attribute, program, page=0x00) -> None:
     Return:
     None
     """
-    program.asm_codegen.extend(["mov ah, 0x0e",
-                                f"mov al, '{char}'",
-                                f"mov bh, {page}",
+    program.asm_codegen.append("mov ah, 0x0e")
+    if char is not None: program.asm_codegen.append(f"mov al, '{char}'")
+    program.asm_codegen.extend([f"mov bh, {page}",
                                 f"mov bl, {attribute}",
                                 "int 0x10"])
 

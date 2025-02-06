@@ -18,3 +18,17 @@ def fill_file(times: int, value: (int, str), program) -> None:
     None
     """
     program.asm_codegen.append(f"times {times} - ($ - $$) db {value}")
+
+def inline_asm(code: str, program) -> None:
+    """
+    This function allows the programer to use inline Assembly code.
+
+    Parameters:
+    code: the Assembly code
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"{code}")

@@ -61,3 +61,43 @@ def long_jump(segment: (int, str), offset: (int, str), program) -> None:
     converted_offset = str(offset)
 
     program.asm_codegen.append(f"jmp dword {converted_segment}:{converted_offset}")
+
+def subroutine_return(program) -> None:
+    """
+    This function returns from a subroutine.
+
+    Parameters:
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append("ret")
+
+def interrupt_return(program) -> None:
+    """
+    This function returns from an interrupt.
+
+    Parameters:
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append("iret")
+
+def call(label: str, program) -> None:
+    """
+    This function calls a given subroutine.
+
+    Parameters:
+    label (str): name of subroutine
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"call {label}")
