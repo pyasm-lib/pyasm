@@ -17,15 +17,42 @@ Anything other?
 Actually, there is no special install. You must download the source code (fortunately, if you are reading this
 README, you probably found it).
 
-If you don't have `git` installed:
+### Linux
+*NOTE: the example uses APT, the Debian package manager, but you can adapt the commands if your distro is different.*
+1. If you don't have git, install it.
 ```bash
-sudo apt update
-sudo apt install git
+apt update && apt install git        # as root
 ```
-
-Next, clone this repository:
+2. Clone this repository.
 ```bash
 git clone https://github.com/pyasm-lib/pyasm
 ```
+3. Create a `.pth` file in your Python site-packages.
+4. Add this line inside the file:
+```txt
+/path/to/pyasm
+```
+5. It's done!
 
-And put the files in your PYTHONPATH.
+### Windows
+***Contribution needed here***
+
+## A first project
+Here is an example of a simple bootloader with PyASM.
+```py
+# Import necessary modules from PyASM
+from pyasm.program import Program
+import pyasm.data, pyasm.utils, pyasm.settings, pyasm.stream
+
+# Create your program
+bootloader = Program("bootloader.asm")
+
+# Infinity loop
+pyasm.stream.hang(bootloader)
+
+pyasm.utils.fill_file(510, 0, bootloader)            # Fill the binary file with 0
+pyasm.data.define_word(0xaa55, bootloader)           # Magic word
+
+bootloader.generate()
+bootloader.assemble("bin", "bootloader.bin")          # NASM required for this line
+```
