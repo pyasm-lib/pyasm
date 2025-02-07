@@ -44,39 +44,3 @@ def set_origin(origin: int, program) -> None:
         program.asm_codegen.append(f"[org {converted_origin}]")
     else:
         raise TypeError(f"The program origin must be a hexadecimal number, not '{converted_origin}'")
-
-def change_mode(mode: str, program) -> None:
-    """
-    This function is used to setup the registers for switching modes.
-
-    Parameters:
-    mode (str): the new mode (real, protected, long)
-    program: this is the Assembly program where the Assembly code will be
-    generated. (Must be an instance of pyasm.program.Program).
-
-    Return:
-    None
-    """
-    if mode == "real":
-        program.asm_codegen.extend(["mov eax, cr0",
-                                    "and eax, 0x7ffffffe",
-                                    "mov cr0, eax"])
-    elif mode == "protected":
-        program.asm_codegen.extend(["mov eax, cr0",
-                                    "or eax, 1",
-                                    "mov cr0, eax"])
-    elif mode == "long":
-        program.asm_codegen.extend(["mov eax, cr4",
-                                    "or eax, 0x20",
-                                    "mov cr4, eax",
-                                    "mov ecx, 0xC0000080",
-                                    "rdmsr",
-                                    "or eax, 0x100",
-                                    "wrmsr",
-                                    "mov eax, cr3",
-                                    "mov cr3, eax",
-                                    "mov eax, cr0",
-                                    "or eax, 0x80000001",
-                                    "mov cr0, eax"])
-    else:
-        raise ValueError(f"Cannot switch to '{mode}' mode. This mode does not exist.")

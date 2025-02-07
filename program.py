@@ -24,6 +24,7 @@ class Program:
         "cr4", "rax", "rbx", "rcx", "rdx", "rsi", "rdi", "rbp", "rsp", "r8", "r9",
         "r10", "r11", "r12", "r13", "r14", "r15"]
         self.labels = []
+        self.constants = {}
 
     def __repr__(self) -> str:
         return f"Program(asm_file_path={self.asm_file_path}, asm_codegen={self.asm_codegen}, bits={self.bits}, origin={self.origin})"
@@ -43,12 +44,5 @@ class Program:
                     if line is not None:
                         file.write(f"{line}\n")
 
-    def assemble(self, output_format: str, output_file: str) -> None:
+    def assemble(self, output_format: str, output_file: str):
         os.system(f"nasm -f {output_format} -o {output_file} {self.asm_file_path}")
-
-    def debug(self, option: str) -> None:
-        if option == "print_asm":
-            for i, line in enumerate(self.asm_codegen):
-                print(f"{i}. {line}")
-        else:
-            raise ValueError(f"Invalid option '{option}' for debugging.")

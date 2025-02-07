@@ -123,3 +123,57 @@ def shift_right(register1: str, register2: str, program) -> None:
     None
     """
     program.asm_codegen.append(f"shr {register1}, {register2}")
+
+def push(register: str, program) -> None:
+    """
+    This function pushes a register on the top of the stack.
+
+    Parameters:
+    register (str): the register to push
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"push {register}")
+
+def pop(register: str, program) -> None:
+    """
+    This function removes the register on the top of the stack.
+
+    Parameters:
+    register (str): the register to pop
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"pop {register}")
+
+def push_all(program) -> None:
+    """
+    This function pushes all the registers on the top of the stack.
+
+    Parameters:
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append("pusha")
+
+def pop_all(program) -> None:
+    """
+    This function removes all the registers from the top of the stack.
+
+    Parameters:
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append("popa")
