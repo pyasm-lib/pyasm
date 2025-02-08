@@ -32,3 +32,22 @@ def inline_asm(code: str, program) -> None:
     None
     """
     program.asm_codegen.append(f"{code}")
+
+def comment(content: str, program) -> None:
+    """
+    This function adds a comment directly in the generated Assembly code,
+    what can be useful for debugging.
+
+    Parameters:
+    content (str): the content of the comment
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Note:
+    All the newline characters ('\\n') will be replaced by spaces ('').
+
+    Return:
+    None
+    """
+    formatted_content = content.replace('\n', ' ')
+    program.asm_codegen.append(f"; {formatted_content}")

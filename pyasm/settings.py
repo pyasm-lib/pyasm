@@ -44,3 +44,31 @@ def set_origin(origin: int, program) -> None:
         program.asm_codegen.append(f"[org {converted_origin}]")
     else:
         raise TypeError(f"The program origin must be a hexadecimal number, not '{converted_origin}'")
+
+def cancel_interrupts(program) -> None:
+    """
+    This function cancels all the interruptions.
+    Use restore_interrupts() to restore them.
+
+    Parameters:
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append("cli")
+
+def restore_interrupts(program) -> None:
+    """
+    This function restores all the interruptions.
+    Use cancel_interrupts() to restore them.
+
+    Parameters:
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append("sti")

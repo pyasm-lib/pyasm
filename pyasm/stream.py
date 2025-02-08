@@ -75,3 +75,16 @@ def jump_if(register1: str, register2: str, operator: str, label: str, program) 
                                     f"jnc {label}"])
     else:
         raise ValueError(f"Invalid operator '{operator}'")
+
+def halt(program) -> None:
+    """
+    This functions stops the CPU.
+
+    Parameters:
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append("hlt")

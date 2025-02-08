@@ -56,3 +56,6 @@ pyasm.data.define_word(0xaa55, bootloader)           # Magic word
 bootloader.generate()
 bootloader.assemble("bin", "bootloader.bin")          # NASM required for this line
 ```
+
+## Contributing
+If you want to contribute, please read [the contribution guide](CONTRIBUTING.md) first.

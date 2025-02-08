@@ -177,3 +177,73 @@ def pop_all(program) -> None:
     None
     """
     program.asm_codegen.append("popa")
+
+def bool_and(register1: str, register2: str, program) -> None:
+    """
+    AND TABLE:
+    1 - 1 -> 1
+    1 - 0 -> 0
+    0 - 0 -> 0
+
+    Parameters:
+    register1 (str): the register which contains the first value
+    register2 (str): the register which contains the second value
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"and {register1}, {register2}")
+
+def bool_or(register1: str, register2: str, program) -> None:
+    """
+    OR TABLE:
+    1 - 1 -> 1
+    1 - 0 -> 1
+    0 - 0 -> 0
+
+    Parameters:
+    register1 (str): the register which contains the first value
+    register2 (str): the register which contains the second value
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"or {register1}, {register2}")
+
+def bool_xor(register1: str, register2: str, program) -> None:
+    """
+    XOR TABLE:
+    1 - 1 -> 0
+    1 - 0 -> 1
+    0 - 0 -> 0
+
+    Parameters:
+    register1 (str): the register which contains the first value
+    register2 (str): the register which contains the second value
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"xor {register1}, {register2}")
+
+def bool_not(register: str, program) -> None:
+    """
+    NOT TABLE:
+    1 -> 0
+    0 -> 1
+
+    Parameters:
+    register (str): the register which contains the bit to invert
+    program: this is the Assembly program where the Assembly code will be
+    generated. (Must be an instance of pyasm.program.Program).
+
+    Return:
+    None
+    """
+    program.asm_codegen.append(f"not {register}")
