@@ -16,26 +16,10 @@ Anything other?
 ## How to use it?
 Actually, there is no special install. You must download the source code (fortunately, if you are reading this
 README, you probably found it).
-
-### Linux
-*NOTE: the example uses APT, the Debian package manager, but you can adapt the commands if your distro is different.*
-1. If you don't have git, install it.
+Go in pyasm and then type:
 ```bash
-apt update && apt install git        # as root
+pip install .
 ```
-2. Clone this repository.
-```bash
-git clone https://github.com/pyasm-lib/pyasm
-```
-3. Create a `.pth` file in your Python site-packages.
-4. Add this line inside the file:
-```txt
-/path/to/pyasm
-```
-5. It's done!
-
-### Windows
-***Contribution needed here***
 
 ## A first project
 Here is an example of a simple bootloader with PyASM.
