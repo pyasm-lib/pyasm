@@ -5,7 +5,7 @@ setup(
     version="0.4.0",
     author="PyASM Lib",
     description="A Python library which generates Assembly code.",
-    long_description=open('README.md').read(),=
+    long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     url="https://github.com/pyasm-lib/pyasm",
     packages=find_packages(),
