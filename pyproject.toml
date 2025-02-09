@@ -1,0 +1,13 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[project]
+name = "pyasm"
+version = "0.4.0"
+description = "A Python library which generates x86 and x86_64 Assembly code."
+authors = [{name = "Wither__"}]
+license = {text = "MIT"}
+readme = "README.md"
+homepage = "https://github.com/pyasm-lib/pyasm"
+dependencies = []
